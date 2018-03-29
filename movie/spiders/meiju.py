@@ -4,9 +4,10 @@ from items import MovieItem
 
 class MeijuSpider(scrapy.Spider):
     name = 'meiju'
-    allowed_domains = ['meijutt.com']
-    start_urls = ['http://meijutt.com/new100.html']
-
+    #allowed_domains = ['meijutt.com']
+    #start_urls = ['http://meijutt.com/new100.html']
+    allowed_domains = ['stock2.finance.sina.com.cn']
+    start_urls = ['http://stock2.finance.sina.com.cn/futures/api/json.php/IndexService.getInnerFuturesMiniKLine15m?symbol=RB0']
     def parse(self, response):
         movies = response.xpath('//ul[@class="top-list  fn-clear"]/li')
         for each_movie in movies:
