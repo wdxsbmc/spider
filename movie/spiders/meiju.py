@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from items import MovieItem
+import json
+from movie.items import MovieItem
 
 class MeijuSpider(scrapy.Spider):
     name = 'meiju'
@@ -9,8 +10,17 @@ class MeijuSpider(scrapy.Spider):
     allowed_domains = ['stock2.finance.sina.com.cn']
     start_urls = ['http://stock2.finance.sina.com.cn/futures/api/json.php/IndexService.getInnerFuturesMiniKLine15m?symbol=RB0']
     def parse(self, response):
-        movies = response.xpath('//ul[@class="top-list  fn-clear"]/li')
-        for each_movie in movies:
+        #movies = response.xpath('//ul[@class="top-list  fn-clear"]/li')
+        movies = json.loads(response.body)
+        print(response.body)
+        main_data = json.loads(response.body.decode("utf-8"))
+        for eveData in main_data:
             item = MovieItem()
-            item['name'] = each_movie.xpath('./h5/a/@title').extract()[0]
+            item['name'] = eveData
+            print(item['name'])
             yield item
+        #for each_movie in movies:
+            #item = MovieItem()
+            #item['name'] = each_movie.xpath('./h5/a/@title').extract()[0]
+            #item['name'] = each_movie   
+            #yield item
