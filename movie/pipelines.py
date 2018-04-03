@@ -14,21 +14,25 @@ class MoviePipeline(object):
 #             #fp.write(item['name'].encode("utf8"))
 #             fp.write(item['name']+'\n')
 
-            db_object = dbhandle_online()
-            cursor = db_object.cursor()
-            sql = 'insert into dg_spider.dg_spider_post(title) ' \
-            'values("%s")' \
-            % (item['name'])
-            try:
-                cursor.execute(sql)
-                #cursor.fetchone()
-                db_object.commit()            
-            except Exception as e:
-                print(item['name'])
-                print("catch exception")     
-                print(e)
+            # db_object = dbhandle_online()
+            # cursor = db_object.cursor()
+            # sql = 'insert into dg_spider.dg_spider_post(title) ' \
+            # 'values("%s")' \
+            # % (item['name'])
+            # try:
+            #     cursor.execute(sql)
+            #     #cursor.fetchone()
+            #     db_object.commit()            
+            # except Exception as e:
+            #     print(item['name'])
+            #     print("catch exception")     
+            #     print(e)
 
-            cursor.close()
-            db_object.close()
+            # cursor.close()
+            # db_object.close()
 
-            
+
+            #use django model save data
+            item.save()
+            return item
+

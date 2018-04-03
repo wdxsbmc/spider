@@ -7,7 +7,12 @@
 
 import scrapy
 
+from scrapy_djangoitem import DjangoItem
+from silo.models import TestScrapy
 
-class MovieItem(scrapy.Item):
-    # define the fields for your item here like:
-    name = scrapy.Field()
+class MovieItem(DjangoItem):
+    django_model = TestScrapy
+
+# class MovieItem(scrapy.Item):
+#     # define the fields for your item here like:
+#     name = scrapy.Field()
