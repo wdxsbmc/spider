@@ -8,8 +8,17 @@
 #     https://doc.scrapy.org/en/latest/topics/settings.html
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import os
+import django
+import sys
+sys.path.append('.\demosite')
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "demosite.settings")
+django.setup()
+
 
 BOT_NAME = 'movie'
+
 
 SPIDER_MODULES = ['movie.spiders']
 NEWSPIDER_MODULE = 'movie.spiders'
